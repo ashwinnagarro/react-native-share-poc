@@ -111,7 +111,7 @@ const Profile = ({navigation}) => {
             <Text style={[styles.aboutBtnDetail, styles.aboutBtnTitle]}>
               {/* {strings.disableNotifications} */}
             </Text>
-            <Switch />
+            {/* <Switch /> */}
           </View>
 
           {/* Choose language button */}

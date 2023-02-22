@@ -6,12 +6,13 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
+  Switch,
   Text,
   useColorScheme,
   View,
@@ -25,6 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Profile from './app/Profile/Profile';
+import ShareComponent from './app/Share/share';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -56,7 +58,7 @@ const Section = ({children, title}) => {
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-
+  const [toggle, setToggle] = useState(false);
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -71,7 +73,18 @@ const App = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
-        <Profile />
+        <View
+          style={{
+            backgroundColor: 'yellow',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text>More Share options</Text>
+          <Switch value={toggle} onValueChange={setToggle} />
+        </View>
+        {!toggle ? <Profile /> : <ShareComponent />}
+
         {/* <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
